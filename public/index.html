@@ -1,0 +1,48 @@
+<!doctype html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Basic initialization</title>
+</head>
+	<script src="codebase/dhtmlxcommon.js" type="text/javascript" charset="utf-8"></script>
+	<script src="codebase/dhtmlxgrid.js" type="text/javascript" charset="utf-8"></script>
+	<script src="codebase/dhtmlxgridcell.js" type="text/javascript" charset="utf-8"></script>
+	<script src="codebase/dhtmlxdataprocessor.js" type="text/javascript" charset="utf-8"></script>
+
+	<link rel="stylesheet" href="codebase/dhtmlxgrid.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<link rel="stylesheet" href="codebase/skins/dhtmlxgrid_dhx_skyblue.css" type="text/css" media="screen" title="no title" charset="utf-8">
+
+<script type="text/javascript" charset="utf-8">
+	function init() {
+		mygrid = new dhtmlXGridObject("grid_here");
+		mygrid.setImagePath("../../codebase/imgs/");
+		mygrid.setHeader("Sales, Author, Title, Price");
+		mygrid.setColumnIds("sales,author,title,price");
+		mygrid.setInitWidths("70,150,*,70");
+		mygrid.setColTypes("dyn,ed,ed,ed");
+		mygrid.setColSorting("int,str,str,int");
+		mygrid.setSkin("dhx_skyblue");
+		mygrid.init();
+
+		mygrid.load("/data", "js")
+
+		var dp = new dataProcessor("/data");
+		dp.init(mygrid);
+		dp.enableDataNames(true);
+		dp.setTransactionMode("POST", false);
+	}
+	function addrow(){
+		var id = mygrid.uid();
+		mygrid.setActive(true);
+		mygrid.addRow(id, "100,New Author,New Book");
+	}
+	function deleterow(){
+		mygrid.deleteSelectedRows();
+	}
+</script>	
+
+<body onload="init();">
+	<div id="grid_here" style="width:550px; height:150px;"></div>
+	<br>
+	<input style="padding:6px;" type="button" value="Add a new record" onclick="addrow()">
+	<input style="padding:6px;" type="button" value="Delete the selected record" onclick="deleterow()">
+</body>
