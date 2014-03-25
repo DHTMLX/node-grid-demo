@@ -5,7 +5,7 @@
   "main": "app.js",
   "dependencies": {
     "express": "~3.3.8",
-    "mongoskin": "~0.6.0"
+    "mysql": "~2.1.1"
   },
   "devDependencies": {},
   "scripts": {

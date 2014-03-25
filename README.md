@@ -1,4 +1,4 @@
 node-grid-demo
 ==============
 
-Demo of dhtmlxGrid with NodeJs + MongoDB as backend
+Demo of dhtmlxGrid with NodeJs + MySQL as backend
